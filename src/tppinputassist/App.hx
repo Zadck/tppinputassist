@@ -39,7 +39,9 @@ class App {
     var touchscreenHeight = 240;
     var touchscreenFormat = "{x},{y}";
     var lastSendTime:Date;
-
+    var clickcount = 0;
+    var clickone = "";
+    var clicktwo = "";
     public function new() {
         lastSendTime = Date.now();
     }
@@ -244,9 +246,28 @@ class App {
 
         new JQuery(clickReceiver).click(function (event:js.jquery.Event) {
             var coord = calcCoordinate(event);
-            var text = touchscreenFormat
-                .replace("{x}", Std.string(coord.x))
-                .replace("{y}", Std.string(coord.y));
+            var text = touchscreenFormat;
+            if text.startsWith(">"){
+              text.replace(">", Std.string("")
+              text.replace("{x}", Std.string(coord.x);
+              text.replace("{y}", Std.string(coord.y);
+              if clickcount == 0 {
+                clickone = text
+                clickcount += 1
+                return
+              }
+              if clickcount == 1 {
+                clicktwo = text
+                text = clickone + clicktwo
+                clickcount = 0
+              }
+            }
+            else{
+            clickcount = 0
+            text.replace("{x}", Std.string(coord.x);
+            text.replace("{y}", Std.string(coord.y);
+            }
+
 
             // new JQuery(textarea).focus().val(text).attr("value", text);
             // Trigger React
